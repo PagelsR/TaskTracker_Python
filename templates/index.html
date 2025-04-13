@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stir Trek 2025 CLI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Tracker - Stir Trek 2025 </h1>
+        <form action="/add" method="post">
+            <input type="text" name="title" placeholder="What needs to be done?" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <div class="filter-buttons">
+            <br>
+            <a href="{{ url_for('index', filter='all') }}">All</a>
+            <a href="{{ url_for('index', filter='active') }}">Active</a>
+            <a href="{{ url_for('index', filter='completed') }}">Completed</a>
+        </div>
+
+        <ul>
+            {% for task in tasks %}
+                {% if filter == 'all' or (filter == 'active' and not task.done) or (filter == 'completed' and task.done) %}
+                <li class="{{ 'done' if task.done else '' }}">
+                    <a href="/complete/{{ loop.index0 }}" class="icon-check">✔</a>
+                    {{ loop.index }}. {{ task.title }}
+                    <a href="/delete/{{ loop.index0 }}" class="icon-delete">X</a>
+                </li>
+                {% endif %}
+            {% else %}
+                <li>No tasks yet!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
