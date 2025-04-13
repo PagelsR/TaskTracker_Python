@@ -93,3 +93,10 @@ li {
     text-decoration: none;
     margin-left: 10px;
 }
+
+.task-count {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #2c3e50; /* Dark blue-gray for consistency with the title */
+}

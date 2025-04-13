@@ -20,6 +20,16 @@
             <a href="{{ url_for('index', filter='completed') }}">Completed</a>
         </div>
 
+        <div class="task-count">
+            {% if filter == 'all' %}
+                <p>Total tasks: {{ tasks|length }}</p>
+            {% elif filter == 'active' %}
+                <p>Active tasks: {{ tasks|selectattr('done', 'equalto', False)|list|length }}</p>
+            {% elif filter == 'completed' %}
+                <p>Completed tasks: {{ tasks|selectattr('done', 'equalto', True)|list|length }}</p>
+            {% endif %}
+        </div>
+
         <ul>
             {% for task in tasks %}
                 {% if filter == 'all' or (filter == 'active' and not task.done) or (filter == 'completed' and task.done) %}
