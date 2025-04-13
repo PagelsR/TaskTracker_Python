@@ -1,22 +1,24 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #fdf6e3;
+    background-color: #f9f9f9; /* Light gray for a clean, professional look */
     padding: 20px;
-    color: #333;
+    color: #333; /* Dark gray for text readability */
 }
 
 .container {
-    background: #fdf6e3;
+    background: #ffffff; /* White background for the container */
+    color: #333; /* Dark gray text for contrast */
     padding: 20px;
     max-width: 600px;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Subtle border for definition */
 }
 
 h1 {
     font-size: 2.5em;
-    color: #b58900;
+    color: #2c3e50; /* Dark blue-gray for a professional title */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -24,15 +26,17 @@ h1 {
 input[type="text"] {
     padding: 10px;
     width: 70%;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Subtle border for input field */
     border-radius: 5px;
     font-size: 1em;
+    background-color: #ffffff; /* White background for input */
+    color: #333; /* Dark gray text */
 }
 
 button {
     padding: 10px 15px;
-    background-color: #268bd2;
-    color: white;
+    background-color: #007bff; /* Professional blue for buttons */
+    color: white; /* White text for contrast */
     border: none;
     border-radius: 5px;
     font-size: 1em;
@@ -40,18 +44,19 @@ button {
 }
 
 button:hover {
-    background-color: #2aa198;
+    background-color: #0056b3; /* Darker blue for hover effect */
 }
 
 .filter-buttons a {
     margin-right: 10px;
     text-decoration: none;
-    color: #268bd2;
+    color: #007bff; /* Blue for filter links */
     font-weight: bold;
 }
 
 .filter-buttons a:hover {
     text-decoration: underline;
+    color: #0056b3; /* Darker blue for hover effect */
 }
 
 ul {
@@ -62,26 +67,28 @@ ul {
 li {
     margin-top: 10px;
     font-size: 1.2em;
-    background-color: #eee8d5;
+    background-color: #f8f9fa; /* Light gray for task items */
+    color: #333; /* Dark gray text */
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Subtle border for task items */
 }
 
 .done {
     text-decoration: line-through;
-    color: gray;
+    color: #6c757d; /* Muted gray for completed tasks */
 }
 
 .icon-check {
-    color: green;
+    color: #28a745; /* Green for check icon */
     font-weight: bold;
     text-decoration: none;
     margin-left: 10px;
 }
 
 .icon-delete {
-    color: red;
+    color: #dc3545; /* Red for delete icon */
     font-weight: bold;
     text-decoration: none;
     margin-left: 10px;
