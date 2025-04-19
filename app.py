@@ -33,5 +33,11 @@ def delete(task_id):
 def about():
     return render_template('about.html')
 
+@app.route('/reset', methods=['POST'])
+def reset():
+    global tasks
+    tasks.clear()
+    return '', 204
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -9,8 +9,8 @@
     <div class="container">
         <h1>Task Tracker - Stir Trek 2025 </h1>
         <form action="/add" method="post">
-            <input type="text" name="title" placeholder="What needs to be done?" required>
-            <button type="submit">Add</button>
+            <input type="text" name="title" id="new-task-input" placeholder="What needs to be done?" required>
+            <button type="submit" class="add-task-btn">Add</button>
         </form>
 
         <div class="task-count">
@@ -26,11 +26,13 @@
         <ul class="todo-list">
             {% for task in tasks %}
                 {% if filter == 'all' or (filter == 'active' and not task.done) or (filter == 'completed' and task.done) %}
-                <li class="{{ 'done' if task.done else '' }}">
-                    <a href="/complete/{{ loop.index0 }}" class="icon-check">✔</a>
-                    {{ task.title }}
-                    <a href="/delete/{{ loop.index0 }}" class="icon-delete">X</a>
-                </li>
+                <div class="task-item">
+                    <li class="{{ 'done' if task.done else '' }}">
+                        <a href="/complete/{{ loop.index0 }}" class="icon-check" title="Mark complete" data-action="complete">✔</a>
+                        {{ task.title }}
+                        <a href="/delete/{{ loop.index0 }}" class="icon-delete" title="Delete task" data-action="delete">X</a>
+                    </li>
+                </div>
                 {% endif %}
             {% else %}
                 <li>No tasks yet!</li>
