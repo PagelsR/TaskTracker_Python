@@ -13,13 +13,6 @@
             <button type="submit">Add</button>
         </form>
 
-        <div class="filter-buttons">
-            <br>
-            <a href="{{ url_for('index', filter='all') }}">All</a>
-            <a href="{{ url_for('index', filter='active') }}">Active</a>
-            <a href="{{ url_for('index', filter='completed') }}">Completed</a>
-        </div>
-
         <div class="task-count">
             {% if filter == 'all' %}
                 <p>Total tasks: {{ tasks|length }}</p>
@@ -35,7 +28,7 @@
                 {% if filter == 'all' or (filter == 'active' and not task.done) or (filter == 'completed' and task.done) %}
                 <li class="{{ 'done' if task.done else '' }}">
                     <a href="/complete/{{ loop.index0 }}" class="icon-check">✔</a>
-                    {{ loop.index }}. {{ task.title }}
+                    {{ task.title }}
                     <a href="/delete/{{ loop.index0 }}" class="icon-delete">X</a>
                 </li>
                 {% endif %}
@@ -43,10 +36,19 @@
                 <li>No tasks yet!</li>
             {% endfor %}
         </ul>
-    </div>
 
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="{{ url_for('about') }}">About</a>
+        <div class="filter-buttons" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+            <p style="margin: 0;">{{ tasks|selectattr('done', 'equalto', False)|list|length }} items left</p>
+            <div style="text-align: center; flex-grow: 1;">
+                <a href="{{ url_for('index', filter='all') }}">All ({{ tasks|length }})</a>
+                <a href="{{ url_for('index', filter='active') }}">Active ({{ tasks|selectattr('done', 'equalto', False)|list|length }})</a>
+                <a href="{{ url_for('index', filter='completed') }}">Completed ({{ tasks|selectattr('done', 'equalto', True)|list|length }})</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('about') }}">About</a>
+        </div>
     </div>
 </body>
 </html>
