@@ -2,11 +2,14 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ request, page }) => {
-  await request.post('http://localhost:5000/reset');
   await page.goto('http://localhost:5000');
 });
 
 test.describe('Add Task', () => {
+  test.beforeAll(async ({ request }) => {
+    await request.post('http://localhost:5000/reset');
+  });
+  
   const tasks = ['Buy some cheese', 'Feed the cat', 'Book a doctors appointment'];
 
   for (const task of tasks) {
