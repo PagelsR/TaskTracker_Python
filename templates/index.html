@@ -23,7 +23,7 @@
             {% endif %}
         </div>
 
-        <ul>
+        <ul class="todo-list">
             {% for task in tasks %}
                 {% if filter == 'all' or (filter == 'active' and not task.done) or (filter == 'completed' and task.done) %}
                 <li class="{{ 'done' if task.done else '' }}">
