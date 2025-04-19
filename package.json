@@ -1,0 +1,22 @@
+{
+  "name": "tasktracker_python",
+  "version": "1.0.0",
+  "description": "TaskTracker_Python is a web-based task management application designed to help users efficiently manage their tasks. It provides features for adding, completing, deleting, and filtering tasks, making it a simple yet effective tool for personal or team productivity.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PagelsR/TaskTracker_Python.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PagelsR/TaskTracker_Python/issues"
+  },
+  "homepage": "https://github.com/PagelsR/TaskTracker_Python#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.14.1"
+  }
+}
