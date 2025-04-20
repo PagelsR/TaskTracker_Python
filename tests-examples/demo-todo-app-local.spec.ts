@@ -27,12 +27,18 @@ test.describe('Add Task', () => {
     }
   });
 
-   test('should prevent adding empty task', async ({ page }) => {
-    //test.setTimeout(15000); // 15 seconds
-    await page.click('text=Add');
+  //  test('should prevent adding empty task', async ({ page }) => {
+  //   //test.setTimeout(15000); // 15 seconds
+  //   await page.click('text=Add');
 
-    await expect(page.locator('.todo-list')).toContainText('No tasks yet!', { timeout: 15000 }); // 15 seconds
-    //await expect(page.locator('.todo-list')).toContainText('No tasks yet!');
+  //   await expect(page.locator('.todo-list')).toContainText('No tasks yet!', { timeout: 15000 }); // 15 seconds
+  //   //await expect(page.locator('.todo-list')).toContainText('No tasks yet!');
+  // });
+  test('should prevent adding empty task', async ({ page }) => {
+    const todoInput = page.getByPlaceholder('What needs to be done?');
+    await todoInput.fill(''); // nothing
+    await page.click('text=Add');
+    await expect(page.locator('.todo-list')).toContainText('No tasks yet!', { timeout: 15000 });
   });
 
   test('should clear input after adding a task', async ({ page }) => {
@@ -41,8 +47,19 @@ test.describe('Add Task', () => {
     await page.click('text=Add');
     await expect(input).toHaveValue('');
   });
-});
 
+  test('flaky add task test - passes 50% of the time', async ({ page }) => {
+    if (Math.random() > 0.5) {
+      const task = 'This may or may not work';
+      const newTodo = page.getByPlaceholder('What needs to be done?');
+      await newTodo.fill(task);
+      await page.click('text=Add');
+      await expect(page.locator('.todo-list')).toContainText(task);
+    } else {
+      throw new Error('Simulated flaky failure');
+    }
+  });
+});
 
 
 test.describe('Add Tests with a loop', () => {
@@ -99,14 +116,50 @@ test.describe('Complete Task', () => {
     await newTodo.fill(taskName);
     await page.click('text=Add');
 
-    const checkLink = page.locator(`.todo-list li:has-text("${taskName}") .icon-check`);
+    const taskItem = page.locator('.todo-list li').filter({ hasText: taskName });
+    const checkLink = taskItem.locator('.icon-check');
     await Promise.all([
       page.waitForNavigation(),
       checkLink.click(),
     ]);
 
-    await expect(page.locator('.filter-buttons')).toContainText('Completed (1)');
+    await expect(page.locator('.filter-buttons')).toContainText('Completed (1)', { timeout: 15000 });
   });
+
+  test('flaky complete task test - passes 50% of the time', async ({ page }) => {
+    const taskName = 'Sometimes complete me';
+    const newTodo = page.getByPlaceholder('What needs to be done?');
+    await newTodo.fill(taskName);
+    await page.click('text=Add');
+
+    const taskItem = page.locator('.todo-list li').filter({ hasText: taskName });
+    const checkLink = taskItem.locator('.icon-check');
+
+    if (Math.random() > 0.5) {
+      await Promise.all([
+        page.waitForNavigation(),
+        checkLink.click(),
+      ]);
+      await expect(page.locator('.todo-list li.done')).toContainText(taskName);
+    } else {
+      throw new Error('Simulated flaky failure on completion');
+    }
+  });
+  
+  // test('should update completed count', async ({ page }) => {
+  //   const taskName = 'Check email';
+  //   const newTodo = page.getByPlaceholder('What needs to be done?');
+  //   await newTodo.fill(taskName);
+  //   await page.click('text=Add');
+
+  //   const checkLink = page.locator(`.todo-list li:has-text("${taskName}") .icon-check`);
+  //   await Promise.all([
+  //     page.waitForNavigation(),
+  //     checkLink.click(),
+  //   ]);
+
+  //   await expect(page.locator('.filter-buttons')).toContainText('Completed (1)');
+  // });
 });
 
 test.describe('Delete Task', () => {
