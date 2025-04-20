@@ -25,7 +25,7 @@ test.describe('Add Task', () => {
   });
 
   test('should prevent adding empty task', async ({ playwright, page }) => {
-    const request = await playwright.request.newContext(); // Removed baseURL
+    const request = await playwright.request.newContext();
     await request.post('/reset');
     await request.dispose();
     const todoInput = page.getByPlaceholder('What needs to be done?');
@@ -101,7 +101,7 @@ test.describe('Complete Task', () => {
   });
 
   test('should update completed count', async ({ playwright, page }) => {
-    const request = await playwright.request.newContext(); // Removed baseURL
+    const request = await playwright.request.newContext();
     await request.post('/reset');
     await request.dispose();
     const taskName = 'Check email';
