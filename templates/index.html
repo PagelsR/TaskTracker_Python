@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <title>Stir Trek 2025 CLI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 5px;
+            justify-content: space-between; /* Adjust spacing to push title to the right */
+        }
+        .header img {
+            height: 110px;
+            margin-right: 10px;
+        }
+        #new-task-input {
+            margin-left: 10px; /* Existing margin for spacing before the input box */
+            margin-top: 10px; /* Added margin for a blank line above the input box */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Task Tracker - Stir Trek 2025 </h1>
+        <div class="header">
+            <img src="{{ url_for('static', filename='stirtrek-header-logo.png') }}" alt="Stir Trek Logo">
+            <h1 style="color: white;">Task Tracker</h1>
+        </div>
         <form action="/add" method="post">
             <input type="text" name="title" id="new-task-input" placeholder="What needs to be done?" required>
             <button type="submit" class="add-task-btn">Add</button>
@@ -48,8 +69,9 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="{{ url_for('about') }}">About</a>
+        <!-- <div style="text-align: center; margin-top: 20px;" class="about-link-container"> -->
+        <div class="about-link-container">
+            <a href="{{ url_for('about') }}" class="about-link">About</a>
         </div>
     </div>
 </body>

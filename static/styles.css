@@ -100,3 +100,18 @@ li {
     font-size: 1.2em;
     color: #2c3e50; /* Dark blue-gray for consistency with the title */
 }
+
+.about-link-container {
+    text-align: right; /* Right-align the container */
+}
+
+.about-link {
+    color: #007bff; /* Blue for the link */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue for hover effect */
+}
