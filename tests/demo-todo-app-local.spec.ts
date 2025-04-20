@@ -1,3 +1,4 @@
+const tasks = ['Buy the cheese', 'Buy the milk', 'Feed the cat', 'Book a doctors appointment', 'Walk the dog'];
 
 import { test, expect } from '@playwright/test';
 
@@ -10,11 +11,7 @@ test.describe('Add Task', () => {
     await page.goto('/');
   });
 
-  // Improved selector logic
-  const tasks = ['Buy the cheese', 'Buy the milk', 'Feed the cat', 'Book a doctors appointment', 'Walk the dog'];
-
   test('should add multiple tasks without refreshing', async ({ page }) => {
-    const tasks = ['Buy the cheese', 'Buy the milk', 'Feed the cat', 'Book a doctors appointment', 'Walk the dog'];
     const newTodo = page.getByPlaceholder('What needs to be done?');
   
     for (const task of tasks) {
@@ -27,13 +24,6 @@ test.describe('Add Task', () => {
     }
   });
 
-  //  test('should prevent adding empty task', async ({ page }) => {
-  //   //test.setTimeout(15000); // 15 seconds
-  //   await page.click('text=Add');
-
-  //   await expect(page.locator('.todo-list')).toContainText('No tasks yet!', { timeout: 15000 }); // 15 seconds
-  //   //await expect(page.locator('.todo-list')).toContainText('No tasks yet!');
-  // });
   test('should prevent adding empty task', async ({ page }) => {
     const todoInput = page.getByPlaceholder('What needs to be done?');
     await todoInput.fill(''); // nothing
@@ -70,9 +60,6 @@ test.describe('Add Tests with a loop', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
-
-  // Improved selector logic
-  const tasks = ['Buy the cheese', 'Buy the milk', 'Feed the cat', 'Book a doctors appointment', 'Walk the dog'];
 
   for (const task of tasks) {
     test(`should add task with refreshing ${task}`, async ({ page }) => {
@@ -146,20 +133,6 @@ test.describe('Complete Task', () => {
     }
   });
   
-  // test('should update completed count', async ({ page }) => {
-  //   const taskName = 'Check email';
-  //   const newTodo = page.getByPlaceholder('What needs to be done?');
-  //   await newTodo.fill(taskName);
-  //   await page.click('text=Add');
-
-  //   const checkLink = page.locator(`.todo-list li:has-text("${taskName}") .icon-check`);
-  //   await Promise.all([
-  //     page.waitForNavigation(),
-  //     checkLink.click(),
-  //   ]);
-
-  //   await expect(page.locator('.filter-buttons')).toContainText('Completed (1)');
-  // });
 });
 
 test.describe('Delete Task', () => {
