@@ -13,6 +13,9 @@ test('get started link', async ({ page }) => {
   // Click the about link.
   await page.getByRole('link', { name: 'About' }).click();
 
-  // Expects page to have a heading with the name of Installation.
+  // Expects page to have a heading with the name of About Us.
   await expect(page.getByRole('heading', { name: 'About Us' })).toBeVisible();
+
+  // Assert that the value "Get Started" is found on the page.
+  await expect(page.locator('text=Get Started')).toBeVisible();
 });
