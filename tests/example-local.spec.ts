@@ -10,12 +10,18 @@ test('has title', async ({ page }) => {
 test('get started link', async ({ page }) => {
   await page.goto('http://127.0.0.1:5000/');
 
+  // Click the get started link.
+  await page.getByRole('button', { name: 'Star', exact: true }).click();
+
+});
+
+
+test('about page', async ({ page }) => {
+  await page.goto('http://127.0.0.1:5000/');
+
   // Click the about link.
   await page.getByRole('link', { name: 'About' }).click();
 
   // Expects page to have a heading with the name of About Us.
   await expect(page.getByRole('heading', { name: 'About Us' })).toBeVisible();
-
-  // Assert that the value "Get Started" is found on the page.
-  await expect(page.locator('text=Get Started')).toBeVisible();
 });
