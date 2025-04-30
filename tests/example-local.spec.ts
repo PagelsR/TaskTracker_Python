@@ -10,8 +10,10 @@ test('has title', async ({ page }) => {
 test('get started link', async ({ page }) => {
   await page.goto('http://127.0.0.1:5000/');
 
+  await expect(page.locator('body')).toContainText('Star');
+
   // Click the get started link.
-  await page.getByRole('button', { name: 'Star', exact: true }).click();
+  await page.getByRole('link', { name: 'Get Started' }).click();
 
 });
 
