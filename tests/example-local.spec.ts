@@ -27,3 +27,9 @@ test('about page', async ({ page }) => {
   // Expects page to have a heading with the name of About Us.
   await expect(page.getByRole('heading', { name: 'About Us' })).toBeVisible();
 });
+
+
+
+
+// { name: 'Active' }).click();
+// await expect(page.getByTestId('todo-title')).toHaveCount(2);
