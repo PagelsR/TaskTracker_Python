@@ -15,6 +15,8 @@ test('get started link', async ({ page }) => {
   // Click the get started link.
   await page.getByRole('link', { name: 'Get Started' }).click();
 
+  await page.goto('http://127.0.0.1:5000/');
+  
 });
 
 
